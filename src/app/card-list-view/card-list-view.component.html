@@ -1,0 +1,18 @@
+<mat-card style="width: 60%; margin: 0 auto">
+  <h3>Todo List</h3>
+  <mat-divider></mat-divider>
+  <br />
+  <div *ngFor="let todo of todoList">
+    <app-card-list-item
+      (updateTodoEvent)="updateTodo($event)"
+      (deleteTodo)="deleteTodo($event)"
+      [id]="todo.id"
+      [text]="todo.text"
+      [completed]="todo.completed"
+    ></app-card-list-item>
+    <br />
+  </div>
+  <mat-divider></mat-divider>
+  <br />
+  <app-add-todo (addTodoEvent)="addTodo($event)"></app-add-todo>
+</mat-card>

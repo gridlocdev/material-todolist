@@ -1,0 +1,27 @@
+<mat-grid-list cols="6" rowHeight="3:1">
+  <mat-grid-tile colspan="4" style="padding: 10px">
+    <mat-form-field style="width: 100%; margin: 50px" appearance="fill">
+      <mat-label style="font-size: 1em">New Todo</mat-label>
+      <input
+        #todoInput
+        autofocus
+        [(ngModel)]="text"
+        matInput
+        placeholder="Enter text here"
+      />
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-checkbox [(ngModel)]="completed" color="primary" style="padding: 12px">
+    </mat-checkbox>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button
+      (click)="addTodo(); todoInput.focus()"
+      mat-raised-button
+      color="primary"
+    >
+      Add Todo
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>

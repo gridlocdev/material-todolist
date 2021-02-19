@@ -1,0 +1,39 @@
+<mat-card style="display: flex; flex-direction: row; align-items: center">
+  <mat-checkbox
+    #checkboxInput
+    (change)="updateTodoInput_Checked(checkboxInput.checked)"
+    [(ngModel)]="completed"
+    color="primary"
+    style="padding: 12px"
+  >
+  </mat-checkbox>
+  <mat-form-field
+    style="
+      width: 100%;
+      padding: 0px 12px;
+      margin-top: 12px;
+      justify-content: space-around;
+    "
+    appearance="outline"
+  >
+    <mat-label>Text </mat-label>
+    <input
+      #textInput
+      [ngModel]="text"
+      [value]="text"
+      (change)="updateTodoInput_Text(textInput.value)"
+      type="text"
+      style="padding-left: 12px"
+      matInput
+    />
+  </mat-form-field>
+  <button
+    style="margin-left: auto"
+    (click)="deleteTodo.emit(id)"
+    mat-icon-button
+    color="primary"
+    aria-label="Example icon button with a home icon"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-card>
