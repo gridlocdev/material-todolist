@@ -11,7 +11,7 @@ export class CardListItemComponent implements OnInit {
   @Input() text: string;
   @Input() completed: boolean;
 
-  @Output() deleteTodo = new EventEmitter();
+  @Output() deleteTodoEvent: EventEmitter<Todo> = new EventEmitter<Todo>();
   @Output() updateTodoEvent: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   updateTodoInput_Checked(updatedTodoChecked: boolean) {
@@ -28,6 +28,10 @@ export class CardListItemComponent implements OnInit {
 
   updateTodo(updatedTodo: Todo) {
     this.updateTodoEvent.emit(updatedTodo);
+  }
+
+  deleteTodo() {
+    this.deleteTodoEvent.emit(new Todo(this.id, this.text, this.completed));
   }
 
   log(input: any) {

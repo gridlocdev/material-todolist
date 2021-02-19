@@ -5,32 +5,73 @@ import Todo from '../Models/Todo';
   providedIn: 'root',
 })
 export class TodoService {
-  static createTodo(newTodo: Todo) {
-    throw new Error('Method not implemented.');
-  }
-  static readTodoList(): Array<Todo> {
-    return new Array<Todo>(
-      {
-        id: 0,
-        text: 'Sample Todo Text',
-        completed: false,
-      },
-      {
-        id: 1,
-        text: 'Sample Todo Textaa',
-        completed: false,
-      }
-    );
-    throw new Error('Method not implemented.');
-  }
-  static updateTodo(updatedTodo: Todo) {
-    throw new Error('Method not implemented.');
-  }
-  static deleteTodo(id: number) {
-    throw new Error('Method not implemented.');
-  }
+  private _todoList: Array<Todo>;
+
+  constructor() {}
 
   // Create, Read, Update, Delete
 
-  constructor() {}
+  async createTodo(newTodo: Todo) {
+    return fetch('http://localhost:5000/api/todos/', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify(newTodo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this._todoList = data;
+        console.log(this._todoList);
+        return this._todoList;
+      });
+  }
+  async readTodoList(): Promise<Todo[]> {
+    return fetch('http://localhost:5000/api/todos/', {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this._todoList = data;
+        console.log(this._todoList);
+        return this._todoList;
+      });
+  }
+  async updateTodo(updatedTodo: Todo) {
+    return fetch('http://localhost:5000/api/todos/' + updatedTodo.id, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedTodo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this._todoList = data;
+        console.log(this._todoList);
+        return this._todoList;
+      });
+  }
+  deleteTodo(deletedTodo: Todo) {
+    return fetch('http://localhost:5000/api/todos/' + deletedTodo.id, {
+      method: 'DELETE',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(deletedTodo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this._todoList = data;
+        console.log(this._todoList);
+        return this._todoList;
+      });
+  }
 }

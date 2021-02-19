@@ -11,29 +11,49 @@ import { TodoService } from '../todo.service';
 })
 export class CardListViewComponent implements OnInit {
   todoList: Array<Todo> = [];
+  
+  constructor(private _todoService: TodoService) {
+    this._todoService = _todoService;
+  }
+  
+  ngOnInit(): void {
+    console.log('Hi!');
+  
+    this._todoService.readTodoList().then((_todoList: Array<Todo>) => {
+      this.todoList = _todoList;
+      console.log(_todoList);
+    });
+  }
 
-  deleteTodo(id: number) {
+  deleteTodo(deletedTodo: Todo) {
+    const index = this.findIndexOfTodoId(deletedTodo.id);
 
-    const index = this.findIndexOfTodoId(id);
-
-    TodoService.deleteTodo(id);
-
+    this._todoService.deleteTodo(deletedTodo).then(()=> {
+      console.log("Todo delete sent")
+    })
+    
     this.todoList.splice(index, 1);
   }
-
+  
   updateTodo(updatedTodo: Todo) {
     const index = this.findIndexOfTodoId(updatedTodo.id);
-
+    
     console.log('updatedTodo: ' + updatedTodo.text);
-
-    // todoService.updateTodo(todo: Todo)
-    TodoService.updateTodo(updatedTodo);
+    
+    this._todoService.updateTodo(updatedTodo).then(()=> {
+      console.log("Todo update sent")
+    })
+    //TodoService.updateTodo(updatedTodo);
     this.todoList[index] = updatedTodo;
   }
-
+  
   addTodo(newTodo: Todo) {
     newTodo.id = this.newMaxTodoIdValue(this.todoList);
-    TodoService.createTodo(newTodo);
+    this._todoService.createTodo(newTodo).then(()=> {
+      console.log("Todo submitted")
+    })
+
+    //TodoService.createTodo(newTodo);
     this.todoList.push(newTodo);
   }
 
@@ -57,9 +77,4 @@ export class CardListViewComponent implements OnInit {
     return index;
   }
 
-  constructor() {}
-
-  ngOnInit(): void {
-    this.todoList = TodoService.readTodoList();
-  }
 }

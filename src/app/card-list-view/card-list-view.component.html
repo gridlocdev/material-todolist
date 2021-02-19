@@ -5,7 +5,7 @@
   <div *ngFor="let todo of todoList">
     <app-card-list-item
       (updateTodoEvent)="updateTodo($event)"
-      (deleteTodo)="deleteTodo($event)"
+      (deleteTodoEvent)="deleteTodo($event)"
       [id]="todo.id"
       [text]="todo.text"
       [completed]="todo.completed"
