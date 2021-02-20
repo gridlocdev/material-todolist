@@ -1,27 +1,21 @@
-# Material-TodoList
+# Angular + .NET Core 5 Todo-list
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
+## Overview
 
-## Development server
+I created this to-do list application to learn how to build both an API and a front-end that connect together.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## This layer: Front-end
 
-## Code scaffolding
+This the Front-end layer, which is built using Angular 11 and Angular Material.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tools
 
-## Build
+| Layer     | Function     | Name                  | Version |
+| --------- | ------------ | --------------------- | ------- |
+| Front End | Framework    | Angular               | 11      |
+| Front End | UI Framework | Angular Material      | 11      |
+| Back End  | API          | .NET Core             | 5       |
+| Back End  | ORM          | Entity Framework Core | 5       |
+| Database  | Data Storage | Sqlite                | 3       |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
